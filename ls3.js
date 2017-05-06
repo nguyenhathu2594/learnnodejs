@@ -11,7 +11,7 @@ let onga = goianhem.addListener("Cuutao", function () {
 })
 
 let ongb = goianhem.addListener("Cuutao", function () {
-    console.log("Đợi tí anh đến đây");
+    console.log("Đợi tí anh đến đây!!!");
 })
 
 //Xóa 1 thằng mà éo giúp mình

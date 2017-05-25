@@ -1,0 +1,14 @@
+{
+  "name": "learnexpress",
+  "version": "1.0.0",
+  "description": "Học express",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ThuXeko",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.15.3"
+  }
+}

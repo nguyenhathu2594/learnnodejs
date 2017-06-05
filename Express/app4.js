@@ -11,8 +11,8 @@ app.get("/", function (req, res) {
 });
 
 //Truy cập trang động
-app.get("/user/:username", function (req, res) {
-    res.render("user", { username: req.params.username })
+app.get("/user/:id", function (req, res) {
+    res.render("user", { ID: req.params.username })
 });
 
 app.listen(port, function () {

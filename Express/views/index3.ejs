@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Learn Nodejs</title>
+    <meta charset="UTF-8">
+    <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+</head>
+<body>
+    <h1>Hello</h1>
+    <form method="post" action="/login">
+        Username: <input type="text" name="username" />
+        <br/> Password: <input type="password" name="password" />
+        <br/>
+        <input type="submit" value="Lên nóc nhà" />
+    </form>
+    <script>
+        var ho = "Nguyễn";
+        var ten = "Hà Thu";
+        $.ajax({
+            type: "POST",
+            url: "/loginjson",
+            data: JSON.stringify({ ho: ho, ten: ten }),
+            dataType: "json",
+            contentType: "application/json"
+        });
+    </script>
+</body>
+</html>

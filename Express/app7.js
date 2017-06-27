@@ -9,7 +9,7 @@ var homeController = require("./controllers/homeController");
 var app = express();
 var port = 3000;
 //Kết nối tới Db
-mongoose.connect("mongodb://<thunh>:<runtoyou1>@ds145868.mlab.com:45868/nodejsthunh?authSource=nguyenhathu2594");
+mongoose.connect("mongodb://thunh:runtoyou@ds141242.mlab.com:41242/nodejsthunh");
 //Khởi tạo Schema
 var Schema = mongoose.Schema;
 //Demo Schema(Giống khai báo thuộc tính của các đối tượng trong Model)
@@ -36,7 +36,7 @@ var thuxeko = Nguoidung({
 
 thuxeko.save(function(err){
     if (err) throw err;
-    alert("Thêm đối tượng thành công");
+    console.log("Thêm đối tượng thành công");
 })
 
 app.listen(port, function () {

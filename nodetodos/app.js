@@ -3,6 +3,9 @@ var bodyParser = require("body-parser"); //Đọc thông tin người dùng gử
 var morgan = require("morgan"); //Log request
 var mongoose = require("mongoose"); //Khai báo kết nối với mongoose
 var config = require("./config"); //Config để đọc được thông tin người dùng và lưu trữ sửa cho nhanh
+
+var setupControllers = require("./api/controllers/setupController");
+
 //Khởi tạo
 var app = express();
 var port = process.env.PORT || 3000; //Cấu hình theo biến môi trường(Nếu port k có sẽ gán mặc định cổng 3000)
@@ -23,6 +26,7 @@ app.get("/",function(req,res){
     res.render("index");
 });
 
+setupControllers(app);
 
 
 //Khởi động server

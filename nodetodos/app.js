@@ -5,6 +5,7 @@ var mongoose = require("mongoose"); //Khai báo kết nối với mongoose
 var config = require("./config"); //Config để đọc được thông tin người dùng và lưu trữ sửa cho nhanh
 
 var setupControllers = require("./api/controllers/setupController");
+var todoControllers = require("./api/controllers/todoController");
 
 //Khởi tạo
 var app = express();
@@ -27,6 +28,7 @@ app.get("/",function(req,res){
 });
 
 setupControllers(app);
+todoControllers(app);
 
 
 //Khởi động server

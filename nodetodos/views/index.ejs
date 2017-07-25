@@ -8,10 +8,12 @@
     <!--Load CDN style-->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/angular-xeditable/0.8.0/css/xeditable.min.css">
+
     <link rel="stylesheet" href="assets/css/style.css">
     <!--Load CDN script-->
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-xeditable/0.8.0/js/xeditable.min.js"></script>
     <!--Load app-->
     <script src="assets/js/main/app.js"></script>
 </head>
@@ -19,14 +21,17 @@
 <body ng-controller="todoController">
     <div class="container">
         <div class="jumbotron text-center">
-            <h1>{{ appName }} <span class="label label-info">10</span></h1>
+            <h1>{{ appName }} <span class="label label-info">{{ todos.length }}</span></h1>
         </div>
     </div>
 
     <div id="todo-list" class="row">
         <div class="col-sm-6 col-sm-offset-3">
-            <div class="checkbox">
-                <input type="checkbox"> Test 1
+            <div class="checkbox" ng-repeat="todo in todos">
+                <input type="checkbox" ng-model="todo.isDone">
+                <a href><i class="fa fa-remove"></i></a>
+                <a href ng-click="textBtnform.$show()" ng-hide="textBtnform.$visible"><i class="fa fa-edit"></i></a>
+                <span ng-class="{strike: todo.isDone}" editable-text="todo.thongtin" e-form="textBtnform">{{ todo.thongtin }}</span>
             </div>
         </div>
     </div>
@@ -35,9 +40,9 @@
         <div class="col-sm-8 col-sm-offset-2 text-center">
             <form>
                 <div class="form-group">
-                    <input type="text" class="form-control input-lg text-center" placeholder="Nhập công việc của bạn">
+                    <input type="text" class="form-control input-lg text-center" ng-model="formData.thongtin" placeholder="Nhập công việc của bạn">
                 </div>
-                <button type="submit" class="btn btn-primary btn-lg">Thêm</button>
+                <button type="submit" ng-click="createTodo()" class="btn btn-primary btn-lg">Thêm</button>
             </form>
         </div>
     </div>

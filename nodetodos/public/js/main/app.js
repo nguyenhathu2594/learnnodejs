@@ -1,35 +1,48 @@
 //Khai báo angular
 var app = angular.module("app.todos", ["xeditable"]); //Khai báo phụ thuộc -> [] thư viện nào
 
-app.run(function(editableOptions) {
-  editableOptions.theme = 'bs3';
+app.run(function (editableOptions) {
+    editableOptions.theme = 'bs3';
 });
 
-app.controller("todoController", ['$scope', function ($scope) {
+app.controller("todoController", ['$scope', 'svTodos', function ($scope, svTodos) {
     $scope.appName = "Công việc";
-    $scope.formData = {};
-    $scope.todos = [
-        {
-            thongtin: "Khởi tạo dự án",
-            isDone: true
-        }, {
-            thongtin: "Cài đặt angular",
-            isDone: true
-        }, {
-            thongtin: "Kết nối angular vào db",
-            isDone: false
-        }
-        , {
-            thongtin: "Upload lên heroku",
-            isDone: false
-        }
-    ];
-    $scope.createTodo = function(){
-        var todo ={
+    $scope.formData = {}; //Chứa data khi thêm
+    $scope.todos = []; //Chứa todos được load về
+    //Hiện loading
+    $scope.loading = true;
+
+    //Load data
+    svTodos.get().then(function (data) {
+        $scope.todos = data.data;
+        $scope.loading = false;
+    });
+    $scope.createTodo = function () {
+        $scope.loading = true;
+        var todo = {
             thongtin: $scope.formData.thongtin,
             isDone: false
         }
-        $scope.todos.push(todo);
-        $scope.formData.thongtin = "";
+        svTodos.create(todo).then(function (data) {
+            $scope.todos = data.data;
+            $scope.formData.thongtin = "";
+            $scope.loading = false;
+        });
+    } //Tạo mới
+
+    $scope.updateTodo = function (todo) {
+        $scope.loading = true;
+        svTodos.update(todo).then(function (data) {
+            $scope.todos = data.data;
+            $scope.loading = false;
+        });
+    }
+
+    $scope.deleteTodo = function (todo) {
+        $scope.loading = true;
+        svTodos.delete(id).then(function (data) {
+            $scope.todos = data.data;
+            $scope.loading = false;
+        });
     }
 }]);

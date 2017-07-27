@@ -36,13 +36,13 @@ app.controller("todoController", ['$scope', 'svTodos', function ($scope, svTodos
             $scope.todos = data.data;
             $scope.loading = false;
         });
-    }
+    } //Update
 
     $scope.deleteTodo = function (todo) {
         $scope.loading = true;
-        svTodos.delete(id).then(function (data) {
+        svTodos.delete(todo._id).then(function (data) {
             $scope.todos = data.data;
             $scope.loading = false;
         });
-    }
+    } //Xóa
 }]);

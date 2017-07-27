@@ -53,11 +53,11 @@ module.exports = function (app) {
 
     //Sửa
     app.put("/api/todos", function (req, res) {
-        if (!req.body.id) {
+        if (!req.body._id) {
             res.status(500).send("Không có ID");
         } else {
             Todos.update({
-                _id: req.body.id
+                _id: req.body._id
             }, {
                     thongtin: req.body.thongtin,
                     isDone: req.body.isDone

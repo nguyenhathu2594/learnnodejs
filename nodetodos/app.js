@@ -16,14 +16,16 @@ mongoose.connect(config.getDbConnectionString());
 //Truy cập các middleware
 app.use("/assets", express.static(__dirname + "/public"));
 app.use(bodyParser.json()); //Dữ liệu muốn đọc từ người dùng là Json
-app.use(bodyParser.urlencoded({ extended: true })); //Chấp nhận các kiểu dữ liệu post về server
+app.use(bodyParser.urlencoded({
+    extended: true
+})); //Chấp nhận các kiểu dữ liệu post về server
 
 app.use(morgan("dev")); //Log
 
 app.set("view engine", "ejs");
 
 //Định tuyến
-app.get("/",function(req,res){
+app.get("/", function (req, res) {
     res.render("index");
 });
 
@@ -32,6 +34,6 @@ todoControllers(app);
 
 
 //Khởi động server
-app.listen(port,function(){
+app.listen(port, function () {
     console.log("Ứng dụng đang chạy trên cổng: " + port);
 })
